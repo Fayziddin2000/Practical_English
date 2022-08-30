@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.LessonsFragment"
+    android:background="@drawable/backg3">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_title_sec"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/Primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="0dp"
+        >
+        <TextView
+            android:id="@+id/tv_title_sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Primary"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            tools:text="Lessons"
+            android:textSize="28sp"
+            />
+        <ImageView
+            android:id="@+id/iv_back_sec"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/back"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_secondfrag"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_title_sec"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="24"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/item_lessons" />
+</androidx.constraintlayout.widget.ConstraintLayout>
