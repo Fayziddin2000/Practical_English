@@ -7,19 +7,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.boriyevfayz.practical_english.VideoAdapter
 import com.boriyevfayz.practical_english.databinding.FragmentVideoBinding
-import com.boriyevfayz.practical_english.databinding.ItemVideoBinding
 import com.boriyevfayz.practical_english.youTubeVideos
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_video.*
-import kotlinx.android.synthetic.main.item_video.view.*
 import java.util.*
 
 
