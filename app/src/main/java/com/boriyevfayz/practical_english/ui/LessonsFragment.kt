@@ -6,15 +6,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.boriyevfayz.practical_english.LessonAdapter
-import com.boriyevfayz.practical_english.Lessons
-import com.boriyevfayz.practical_english.R
+import com.boriyevfayz.practical_english.*
 import com.boriyevfayz.practical_english.databinding.FragmentLessonsBinding
+import kotlin.properties.Delegates
 
 class LessonsFragment() : Fragment(), LessonAdapter.OnItemClickListener {
     private lateinit var _binding: FragmentLessonsBinding
     private val mBinding get() = _binding
+
+    private lateinit var viewModel: LessonViewModel
+    private lateinit var urlViewModel: VideosUrlViewModel
+
+    private var page: Int? = null
+
+
+    private val videosUrl = arrayOf(
+        "https://www.youtube.com/embed/JL3jYAPVvqQ",
+        "https://www.youtube.com/embed/O3g7uVzc4qk",
+        "https://www.youtube.com/embed/hekufagJ-jQ",
+        "https://www.youtube.com/embed/wfkj1Q6VTDg",
+        "https://www.youtube.com/embed/GJeKcIj__rg",
+        "https://www.youtube.com/embed/6j72uKkCBKo",
+        "https://www.youtube.com/embed/D5tNAVR1Jog",
+        "https://www.youtube.com/embed/o2qyCegdKlQ",
+        "https://www.youtube.com/embed/XHn-doz9Rn8",
+        "https://www.youtube.com/embed/P1mmrZ3pBkY",
+        "https://www.youtube.com/embed/SJgeI80Oebg",
+        "https://www.youtube.com/embed/n6tcfkATbrY",
+        "https://www.youtube.com/embed/uLxsO_TDN18",
+        "https://www.youtube.com/embed/pwcc1_CVir4",
+        "https://www.youtube.com/embed/C3F9Pk361F8",
+        "https://www.youtube.com/embed/biH7j-SQ3Ac",
+        "https://www.youtube.com/embed/LtMgMxl44j8",
+        "https://www.youtube.com/embed/ecN0ev3AgrM",
+        "https://www.youtube.com/embed/V9onTncNsZY",
+        "https://www.youtube.com/embed/SnjABk61MvI",
+        "https://www.youtube.com/embed/IB8MIzUKI6A",
+        "https://www.youtube.com/embed/TbNAWG2ukyQ",
+        "https://www.youtube.com/embed/mzN7SVWbK0E",
+        "https://www.youtube.com/embed/ZF5vKgEx_NI",
+
+        )
+
     private val lessonList = arrayOf(
         "+++Lesson 1.pdf",
         "+++Lesson 2.pdf",
@@ -50,6 +85,13 @@ class LessonsFragment() : Fragment(), LessonAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLessonsBinding.inflate(layoutInflater, container, false)
+
+        viewModel = ViewModelProvider(requireActivity())[LessonViewModel::class.java]
+        urlViewModel = ViewModelProvider(requireActivity())[VideosUrlViewModel::class.java]
+
+        viewModel.mLessonPage.observe(viewLifecycleOwner) { lessonPage ->
+            page = lessonPage
+        }
 
         mBinding.tvTitleSec.text = "Lessons"
         mBinding.ivBackSec.setOnClickListener {
@@ -93,14 +135,30 @@ class LessonsFragment() : Fragment(), LessonAdapter.OnItemClickListener {
 
 
     override fun onClick(item: Lessons, position: Int) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .addToBackStack(null)
-            .replace(
-                R.id.main_container,
-                LessonFragment(lessonList[position], lessonTitle[position])
-            ).commit()
-        lessonTitle.clear()
+        when (page) {
+            1 -> {
+                viewModel.setLessons(lessonList[position], lessonTitle[position].name)
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace(
+                        R.id.main_container,
+                        LessonFragment()
+                    ).commit()
+                lessonTitle.clear()
+            }
+            2 -> {
+                urlViewModel.setLessons(videosUrl[position])
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace(
+                        R.id.main_container,
+                        VideoFragment()
+                    ).commit()
+                lessonTitle.clear()
+
+            }
+        }
+
+
     }
-
-
 }

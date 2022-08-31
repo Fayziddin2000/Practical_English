@@ -18,7 +18,7 @@ class LessonFragment : Fragment() {
     private val mBinding get() = _binding
 
     private lateinit var viewModel: LessonViewModel
-
+    private var page: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,8 @@ class LessonFragment : Fragment() {
             mBinding.pvInfo.fromAsset(lessons).show()
             mBinding.ivBackThird.setOnClickListener {
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, LessonsFragment()).commit()
+                    .replace(R.id.main_container, LessonsFragment())
+                    .commit()
             }
             mBinding.tvTitleThird.text = viewModel.mLessonTitle.value.toString()
             mBinding.fullscreen.setOnClickListener {
