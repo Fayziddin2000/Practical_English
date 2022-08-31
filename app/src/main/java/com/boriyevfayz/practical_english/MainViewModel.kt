@@ -15,8 +15,6 @@ class MainViewModel : ViewModel() {
     private val _currentQuestionNumber: MutableLiveData<Int> = MutableLiveData(1)
     private val _rightAnswersCount: MutableLiveData<Int> = MutableLiveData(0)
 
-    private var _lessons: MutableLiveData<String> = MutableLiveData("")
-    private var _lessonTitle: MutableLiveData<String> = MutableLiveData("")
 
     val mCurrentQuestion: LiveData<Int> get() = _currentQuestionNumber
     val mRightAnswerCount: LiveData<Int> get() = _rightAnswersCount
@@ -24,8 +22,6 @@ class MainViewModel : ViewModel() {
     val mQuizzesList: LiveData<List<Quizzes>> get() = _quizzesList
     val mErrorLiveData: LiveData<String> get() = _errorLiveData
 
-    val mLessons: LiveData<String> get() = _lessons
-    val mLessonTitle: LiveData<String> get() = _lessonTitle
 
     fun onRightAnswer() {
         _rightAnswersCount.value = _rightAnswersCount.value!! + 1
@@ -44,8 +40,5 @@ class MainViewModel : ViewModel() {
         _rightAnswersCount.value = 0
     }
 
-    fun setLessons(lessons: String, lessonsTittle: String) {
-        _lessons.value = lessons
-        _lessonTitle.value = lessonsTittle
-    }
+
 }

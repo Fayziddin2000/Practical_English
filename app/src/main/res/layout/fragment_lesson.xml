@@ -7,7 +7,19 @@
     tools:context=".ui.LessonFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_Lesson_third"
+        android:id="@+id/cl_Lesson_max"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <com.pdfview.PDFView
+            android:id="@+id/pv_info2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_Lesson_min"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -36,6 +48,15 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="20dp"
                 android:src="@drawable/back" />
+
+
+            <ImageView
+                android:id="@+id/fullscreen"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/fullscreen" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.pdfview.PDFView

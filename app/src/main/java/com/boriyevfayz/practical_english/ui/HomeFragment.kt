@@ -29,13 +29,13 @@ class HomeFragment : Fragment() {
         mBinding.cvLessons.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.main_container, LessonsFragment()).commit()
+                .replace(R.id.main_container, LessonsFragment(1)).commit()
         }
 
         mBinding.cvVideos.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.main_container, VideoFragment()).commit()
+                .replace(R.id.main_container, LessonsFragment(2)).commit()
         }
 
         mBinding.cvQuizes.setOnClickListener {
